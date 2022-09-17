@@ -66,7 +66,7 @@ div .textfield {
 
     &.v-input--is-focused > .v-input__control > .v-input__slot {
       border: 2px solid $cyan-light;
-      box-shadow: $box-shadow;
+      box-shadow: $box-shadow-cyan;
     }
   }
 }

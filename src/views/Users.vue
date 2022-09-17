@@ -1,19 +1,130 @@
 <template>
   <div class="users">
-    <BaseInput :text.sync="currentText" :label="'Текст'" />
+    <h2 class="users__title">Пользователи</h2>
+    <div class="users__list">
+      <div v-for="user in usersList" :key="user.id" class="user">
+        <div class="user__info">
+          <h4 class="user__name">{{ user.name }}</h4>
+          <div>
+            <span class="user__label">Почта: </span>
+            <a :href="`mailto:${user.mail}`" class="user__link">
+              {{ user.mail }}
+            </a>
+            <span class="user__label">, телефон: </span>
+            <a :href="`tel:${user.phone}`" class="user__link">
+              {{ user.phone }}
+            </a>
+          </div>
+        </div>
+        <div class="user__buttons">
+          <BaseButton
+            v-for="button in usersButtons"
+            :key="button.name"
+            :text="button.name"
+            :icon="button.icon"
+            class="user__button"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import BaseInput from "@/components/BaseInput.vue";
+import BaseButton from "@/components/BaseButton.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  components: { BaseInput },
+  components: { BaseButton },
   data() {
     return {
       currentText: null,
     };
   },
+  computed: {
+    ...mapGetters(["usersList", "usersButtons"]),
+  },
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/styles/main.scss";
+
+.users {
+  margin-top: 56px;
+  background: $background;
+  min-height: calc(100vh - 56px);
+  height: 100%;
+
+  &__title {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 36px;
+    color: $fonts;
+  }
+
+  &__list {
+    margin: 50px auto;
+    width: 80%;
+  }
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+  border-radius: 10px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+
+  &__info {
+    color: $fonts;
+  }
+
+  &__name {
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  &__label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  & &__link {
+    border-bottom: 1px solid white;
+    color: $fonts;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 2px solid $cyan;
+      color: $cyan;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+}
+</style>

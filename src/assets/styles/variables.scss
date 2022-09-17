@@ -1,3 +1,8 @@
-$cyan: #1cdab7;
-$cyan-light: rgba(28, 218, 183, 0.1);
-$box-shadow: 5px 5px 20px 0 $cyan-light;
+// $cyan: rgb(158, 198, 210);
+// $cyan-light: rgba(158, 198, 210, 0.1);
+$cyan: rgb(112, 196, 221);
+$fonts: #2c3e50;
+$background: #c9dadf;
+$cyan-light: rgba(112, 196, 221, 0.1);
+$box-shadow-cyan: 5px 5px 20px 0 $cyan-light;
+$box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.15);

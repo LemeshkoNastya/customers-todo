@@ -32,9 +32,17 @@ export default {
   &:hover {
     background-color: $cyan-light;
 
+    &::before {
+      background-color: transparent;
+    }
+
     .v-btn__content > .v-icon {
       color: black;
     }
+  }
+
+  .v-ripple__container {
+    color: $cyan;
   }
 }
 </style>
