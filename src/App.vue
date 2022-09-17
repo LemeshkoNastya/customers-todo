@@ -1,55 +1,40 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+  <v-app id="app">
+    <v-app-bar app elevation="0" color="#FFFFFF" class="header">
+      <router-link to="/" class="header__link">Пользователи</router-link>
+      <router-link to="/payments" class="header__link">Платежи</router-link>
     </v-app-bar>
-
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-
-export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
-};
+export default {};
 </script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import "@/assets/styles/main.scss";
+
+#app {
+  font-family: "Montserrat", sans-serif;
+}
+.header {
+  background: white;
+
+  & &__link {
+    color: black;
+    text-decoration: none;
+
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+
+  .router-link-exact-active {
+    border-bottom: 2px solid $cyan;
+  }
+}
+</style>
