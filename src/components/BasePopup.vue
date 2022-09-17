@@ -1,11 +1,20 @@
 <template>
-  <v-dialog v-model="openDialog" persistent width="500" class="popup">
+  <v-dialog
+    v-model="openDialog"
+    persistent
+    :width="options.width"
+    class="popup"
+  >
     <v-card class="popup__content">
       <v-card-title>
         <h3 class="popup__title">
           {{ options.title }}
         </h3>
-        <v-icon @click="$emit('close')" class="popup__icon">mdi-close</v-icon>
+        <BaseIcon
+          :icon="'mdi-close'"
+          @click.native="$emit('close')"
+          class="popup__icon"
+        />
       </v-card-title>
       <v-card-text>
         <keep-alive v-if="options.component">
@@ -25,12 +34,13 @@
 </template>
 
 <script>
+import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
 export default {
   name: "Popup",
   props: ["popup", "options"],
-  components: { BaseButton },
+  components: { BaseIcon, BaseButton },
   data: () => {
     return {
       openDialog: false,
@@ -69,11 +79,6 @@ export default {
         position: absolute;
         top: 20px;
         right: 20px;
-        color: black;
-
-        &:hover {
-          color: $cyan;
-        }
       }
     }
 
@@ -84,7 +89,7 @@ export default {
 }
 
 .v-dialog {
-  box-shadow: $box-shadow-cyan;
+  box-shadow: $box-shadow;
 }
 
 .v-overlay--active .v-overlay__scrim {

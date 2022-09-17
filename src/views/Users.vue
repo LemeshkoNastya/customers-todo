@@ -32,9 +32,7 @@
       :popup="showPopup"
       :options="optionsPopup"
       @close="showPopup = false"
-      @save="
-        optionsPopup.componentPopup === 'TodoList' ? saveTodo() : saveUser()
-      "
+      @save="optionsPopup.component === 'TodoList' ? saveTodo() : saveUser()"
     />
   </div>
 </template>
@@ -42,38 +40,38 @@
 <script>
 import BaseButton from "@/components/BaseButton.vue";
 import BasePopup from "@/components/BasePopup.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "Home",
   components: { BaseButton, BasePopup },
   data() {
     return {
       currentText: null,
       showPopup: false,
-      optionsPopup: {
-        title: "",
-        buttonSave: false,
-        component: null,
-      },
+      optionsPopup: {},
     };
   },
   computed: {
-    ...mapGetters(["usersList", "usersButtons"]),
+    ...mapGetters(["usersList", "usersButtons", "todoList"]),
   },
   methods: {
+    ...mapMutations(["saveUserTodo"]),
     clickButton(button, id) {
       this.optionsPopup = {
         title: button.titlePopup,
         buttonSave: button.buttonPopupSave,
         component: button.componentPopup,
-        data: id,
+        data: {
+          id: id,
+          todo: JSON.parse(JSON.stringify(this.todoList(id))),
+        },
+        width: 600,
       };
 
       this.showPopup = true;
     },
     saveTodo() {
-      console.log("saveTodo");
+      this.saveUserTodo(this.optionsPopup.data);
       this.showPopup = false;
     },
     saveUser() {
@@ -145,7 +143,7 @@ export default {
     text-decoration: none;
 
     &:hover {
-      border-bottom: $border-bottom;
+      border-bottom: $border;
       color: $cyan;
     }
   }

@@ -12,11 +12,11 @@ export default new Vuex.Store({
         mail: "den4382@mail.ru",
         todo: [{
             name: "Купить билеты родителям",
-            done: false,
+            done: true,
           },
           {
             name: "Заказать пиццу",
-            done: false,
+            done: true,
           },
           {
             name: "Подготовиться к приходу гостей",
@@ -35,7 +35,7 @@ export default new Vuex.Store({
           },
           {
             name: "Провести ТО автомобиля",
-            done: false,
+            done: true,
           }
         ],
       },
@@ -61,7 +61,7 @@ export default new Vuex.Store({
         mail: "dmitry8374@mail.ru",
         todo: [{
             name: "Забронировать ресторан на вечер",
-            done: false,
+            done: true,
           },
           {
             name: "Оповестить гостей",
@@ -69,7 +69,7 @@ export default new Vuex.Store({
           },
           {
             name: "Выбрать десерт",
-            done: false,
+            done: true,
           }
         ],
       },
@@ -84,7 +84,7 @@ export default new Vuex.Store({
           },
           {
             name: "Отвезти отца на работу",
-            done: false,
+            done: true,
           }
         ],
       },
@@ -95,11 +95,11 @@ export default new Vuex.Store({
         mail: "potap.i@mail.ru",
         todo: [{
             name: "Забронировать отель в Москве",
-            done: false,
+            done: true,
           },
           {
             name: "Оформить трансфер в аэропорт",
-            done: false,
+            done: true,
           },
           {
             name: "Обсудить с братом детали концерта",
@@ -129,7 +129,7 @@ export default new Vuex.Store({
         mail: "shilov.danya@mail.ru",
         todo: [{
             name: "Купить сыну игрушку",
-            done: false,
+            done: true,
           },
           {
             name: "Созвониться с клинингом окон в офис",
@@ -147,8 +147,8 @@ export default new Vuex.Store({
             done: false,
           },
           {
-            name: "Договориться о доставке рояля",
-            done: false,
+            name: "Договориться о доставке",
+            done: true,
           }
         ],
       },
@@ -159,7 +159,7 @@ export default new Vuex.Store({
         mail: "mark3283@mail.ru",
         todo: [{
             name: "Заказать продуктов",
-            done: false,
+            done: true,
           },
           {
             name: "Приготовить ужин",
@@ -184,14 +184,22 @@ export default new Vuex.Store({
       }
     ],
   },
-  mutations: {},
+  mutations: {
+    saveUserTodo(state, payload) {
+      const indexUser = state.users.findIndex((user) => user.id === payload.id);
+      if (indexUser > -1) state.users[indexUser].todo = payload.todo;
+    },
+  },
   getters: {
     usersList(state) {
       return state.users;
     },
     usersButtons(state) {
       return state.usersButton;
-    }
+    },
+    todoList: (state) => (id) => {
+      return state.users.find((user) => user.id === id).todo;
+    },
   },
   actions: {},
   modules: {}

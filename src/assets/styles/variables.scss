@@ -1,9 +1,9 @@
-$cyan: rgb(112, 196, 221);
+$cyan: #70c4dd;
 $cyan-light: rgba(112, 196, 221, 0.1);
 $fonts: #2c3e50;
 $background: #c9dadf;
 
 
-$box-shadow-cyan: 5px 5px 20px 0 $cyan-light;
+$box-shadow-cyan: 5px 5px 20px 0 rgba(112, 196, 221, 0.3);
 $box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.15);
-$border-bottom: 2px solid $cyan;
+$border: 2px solid $cyan;

@@ -38,7 +38,7 @@ export default {};
     }
 
     .router-link-exact-active {
-      border-bottom: $border-bottom;
+      border-bottom: $border;
     }
   }
 }

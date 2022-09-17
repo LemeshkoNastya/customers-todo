@@ -7,7 +7,7 @@
       dense
       solo
       clearable
-      color="#1cdab7"
+      color="#70c4dd"
     ></v-text-field>
   </div>
 </template>
@@ -47,25 +47,32 @@ div .textfield {
   }
 
   .v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) {
-    & > .v-input__control > .v-input__slot {
-      margin: 0;
-      padding: 0 10px;
-      box-shadow: none;
-      border: 2px solid $cyan-light;
-      border-radius: 15px;
+    & > .v-input__control {
+      min-height: 35px;
 
-      .v-text-field__slot {
-        padding: 0 20px 0 10px;
-        min-height: 40px;
+      & > .v-input__slot {
+        margin: 0;
+        padding: 0 10px;
+        box-shadow: none;
+        border: 2px solid $cyan;
+        border-radius: 15px;
 
-        .v-label {
-          margin-left: 10px;
+        .v-text-field__slot {
+          padding: 0 20px 0 10px;
+
+          .v-label {
+            margin-left: 10px;
+          }
+        }
+
+        input {
+          padding: 0;
         }
       }
     }
 
     &.v-input--is-focused > .v-input__control > .v-input__slot {
-      border: 2px solid $cyan-light;
+      border: $border;
       box-shadow: $box-shadow-cyan;
     }
   }
