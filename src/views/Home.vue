@@ -1,16 +1,19 @@
 <template>
   <div class="users">
-    <BaseButton :text="'Задачи'" :icon="'mdi-format-list-checks'" />
-    <BaseButton :text="'Редактировать'" :icon="'mdi-pencil'" />
-    <BaseButton :text="'Детали'" :icon="'mdi-information-outline'" />
+    <BaseInput :text.sync="currentText" :label="'Текст'" />
   </div>
 </template>
 
 <script>
-import BaseButton from "@/components/BaseButton.vue";
+import BaseInput from "@/components/BaseInput.vue";
 
 export default {
   name: "Home",
-  components: { BaseButton },
+  components: { BaseInput },
+  data() {
+    return {
+      currentText: null,
+    };
+  },
 };
 </script>

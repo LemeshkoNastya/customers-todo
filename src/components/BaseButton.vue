@@ -12,9 +12,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/main.scss";
+
 .button {
   background-color: white;
-  border: 1.5px solid #17eec6;
+  border: 1.5px solid $cyan;
   border-radius: 15px;
   width: max-content;
 
@@ -23,12 +25,12 @@ export default {
 
     .v-icon {
       font-size: 20px;
-      color: #17eec6;
+      color: $cyan;
     }
   }
 
   &:hover {
-    background-color: rgb(23, 238, 198, 0.1);
+    background-color: $cyan-light;
 
     .v-btn__content > .v-icon {
       color: black;
