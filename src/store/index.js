@@ -170,11 +170,17 @@ export default new Vuex.Store({
     ],
     usersButton: [{
         name: "Задачи",
-        icon: "mdi-format-list-checks"
+        icon: "mdi-format-list-checks",
+        titlePopup: "Задачи",
+        buttonPopupSave: true,
+        componentPopup: "TodoList",
       },
       {
         name: "Редактировать",
-        icon: "mdi-pencil"
+        icon: "mdi-pencil",
+        titlePopup: "Редактирование пользователя",
+        buttonPopupSave: true,
+        componentPopup: "TodoList",
       }
     ],
   },

@@ -25,7 +25,7 @@ export default {};
 
     &__link {
       font-size: 18px;
-      color: black;
+      color: $fonts;
       text-decoration: none;
 
       &:not(:first-child) {
@@ -38,7 +38,7 @@ export default {};
     }
 
     .router-link-exact-active {
-      border-bottom: 2px solid $cyan;
+      border-bottom: $border-bottom;
     }
   }
 }

@@ -22,28 +22,64 @@
             :key="button.name"
             :text="button.name"
             :icon="button.icon"
+            @click.native="clickButton(button, user.id)"
             class="user__button"
           />
         </div>
       </div>
     </div>
+    <BasePopup
+      :popup="showPopup"
+      :options="optionsPopup"
+      @close="showPopup = false"
+      @save="
+        optionsPopup.componentPopup === 'TodoList' ? saveTodo() : saveUser()
+      "
+    />
   </div>
 </template>
 
 <script>
 import BaseButton from "@/components/BaseButton.vue";
+import BasePopup from "@/components/BasePopup.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  components: { BaseButton },
+  components: { BaseButton, BasePopup },
   data() {
     return {
       currentText: null,
+      showPopup: false,
+      optionsPopup: {
+        title: "",
+        buttonSave: false,
+        component: null,
+      },
     };
   },
   computed: {
     ...mapGetters(["usersList", "usersButtons"]),
+  },
+  methods: {
+    clickButton(button, id) {
+      this.optionsPopup = {
+        title: button.titlePopup,
+        buttonSave: button.buttonPopupSave,
+        component: button.componentPopup,
+        data: id,
+      };
+
+      this.showPopup = true;
+    },
+    saveTodo() {
+      console.log("saveTodo");
+      this.showPopup = false;
+    },
+    saveUser() {
+      console.log("saveUser");
+      this.showPopup = false;
+    },
   },
 };
 </script>
@@ -102,14 +138,14 @@ export default {
   }
 
   & &__link {
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
     color: $fonts;
     font-size: 18px;
     font-weight: 400;
     text-decoration: none;
 
     &:hover {
-      border-bottom: 2px solid $cyan;
+      border-bottom: $border-bottom;
       color: $cyan;
     }
   }
