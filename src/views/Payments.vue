@@ -17,6 +17,7 @@
           :text="paymentsButton.name"
           :icon="paymentsButton.icon"
           @click.native="clickButton(payment)"
+          class="payment__button"
         />
       </div>
     </div>
@@ -74,13 +75,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/main.scss";
+
 .payment {
+  @media (max-width: 340px) {
+    flex-direction: column;
+  }
+
   &__info {
     width: 100%;
+    @include for-size(tablet-portrait) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   &__sum {
     width: 50%;
+
+    @include for-size(tablet-portrait) {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    @media (max-width: 340px) {
+      margin-top: 20px;
+    }
   }
 }
 </style>

@@ -14,11 +14,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/main.scss";
+
 .detail {
   margin-top: 30px;
 
-  &__field {
+  & &__field {
     display: flex;
+
+    @include for-size(big-phone) {
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
   }
 
   &__label {
@@ -26,6 +33,10 @@ export default {
     min-width: 160px;
     font-size: 18px;
     font-weight: 600;
+
+    @include for-size(big-phone) {
+      font-size: 16px;
+    }
   }
 
   &__text {

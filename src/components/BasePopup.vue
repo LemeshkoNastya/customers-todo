@@ -66,8 +66,24 @@ export default {
   &__content {
     padding: 20px;
 
+    @include for-size(phone) {
+      padding: 0 0 16px;
+    }
+
     .v-card__title {
       justify-content: center;
+
+      .popup__title {
+        @include for-size(tablet-portrait) {
+          font-size: 20px;
+        }
+
+        @include for-size(big-phone) {
+          width: 90%;
+          word-break: break-word;
+          text-align: center;
+        }
+      }
 
       .popup__icon {
         position: absolute;

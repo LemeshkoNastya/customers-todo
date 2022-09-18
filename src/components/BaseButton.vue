@@ -1,5 +1,10 @@
 <template>
-  <v-btn text :icon="text.length === 0" class="button">
+  <v-btn
+    text
+    :icon="text.length === 0"
+    class="button"
+    :class="{ button_hidden: text.length === 0 }"
+  >
     <v-icon v-if="icon" left> {{ icon }} </v-icon>
     {{ text }}
   </v-btn>
@@ -23,6 +28,10 @@ export default {
   .v-btn__content {
     color: black;
 
+    @include for-size(phone) {
+      font-size: 12px;
+    }
+
     .v-icon {
       font-size: 20px;
       color: $cyan;
@@ -41,8 +50,20 @@ export default {
     }
   }
 
+  &_hidden > .v-btn__content {
+    .v-icon--left {
+      margin: 0;
+    }
+  }
+
   .v-ripple__container {
     color: $cyan;
+  }
+}
+
+.v-btn:not(.v-btn--round).v-size--default {
+  @include for-size(phone) {
+    padding: 0 10px;
   }
 }
 </style>

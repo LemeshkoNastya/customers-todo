@@ -8,7 +8,11 @@
         class="todo__input"
         @keyup.enter.native="addTodo"
       />
-      <BaseButton :text="'Добавить'" @click.native="addTodo" />
+      <BaseButton
+        :text="$vuetify.breakpoint.width < 768 ? '' : 'Добавить'"
+        :icon="$vuetify.breakpoint.width < 768 ? 'mdi-plus' : null"
+        @click.native="addTodo"
+      />
     </div>
     <ul :class="['todo__list', { todo__list_scroll: data.todo.length > 5 }]">
       <TodoListItem
@@ -65,6 +69,14 @@ export default {
 
   &__input {
     margin-right: 50px;
+
+    @include for-size(tablet-portrait) {
+      margin-right: 20px;
+    }
+
+    @include for-size(phone) {
+      margin-right: 10px;
+    }
   }
 
   & &__list {

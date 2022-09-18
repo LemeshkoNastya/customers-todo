@@ -2,10 +2,10 @@
   <div class="page">
     <h1 class="page__title">Пользователи</h1>
     <div class="page__content">
-      <div v-for="user in usersList" :key="user.id" class="card">
+      <div v-for="user in usersList" :key="user.id" class="card user">
         <div class="card__content">
           <h4 class="card__title">{{ user.name }}</h4>
-          <div class="card__info">
+          <div class="card__info user__info">
             <p class="card__details">
               <span>почта: </span>
               <a :href="`mailto:${user.mail}`" class="card__text card__link">
@@ -13,7 +13,7 @@
               </a>
             </p>
             <p class="card__details">
-              <span>, </span>
+              <span v-if="$vuetify.breakpoint.width > 1440">, </span>
               <span>телефон: </span>
               <a :href="`tel:${user.phone}`" class="card__text card__link">
                 {{ user.phone | phoneFormat }}
@@ -25,7 +25,11 @@
           <BaseButton
             v-for="button in usersButtons"
             :key="button.name"
-            :text="button.name"
+            :text="
+              $vuetify.breakpoint.width < 380 && button.name === 'Редактировать'
+                ? 'Ред.'
+                : button.name
+            "
             :icon="button.icon"
             @click.native="clickButton(button, user)"
             class="card__button"
@@ -95,4 +99,20 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "@/assets/styles/main.scss";
+
+.user {
+  @include for-size(tablet-portrait) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__info {
+    @include for-size(desktop) {
+      flex-direction: column;
+      // align-items: flex-start;
+    }
+  }
+}
+</style>

@@ -55,6 +55,10 @@ body {
       &:hover {
         color: $cyan;
       }
+
+      @include for-size(tablet-portrait) {
+        font-size: 16px;
+      }
     }
 
     .router-link-exact-active {
@@ -73,11 +77,31 @@ body {
       text-align: center;
       font-size: 36px;
       color: $fonts;
+
+      @include for-size(small-desktop) {
+        font-size: 32px;
+      }
+
+      @include for-size(tablet-portrait) {
+        margin-top: 20px;
+      }
+
+      @include for-size(big-phone) {
+        font-size: 24px;
+      }
     }
 
     &__content {
       margin: 50px auto;
       width: 80%;
+
+      @include for-size(tablet) {
+        width: 90%;
+      }
+
+      @include for-size(tablet-portrait) {
+        margin: 20px auto;
+      }
     }
   }
 
@@ -97,24 +121,52 @@ body {
       box-shadow: $box-shadow;
     }
 
+    // @include for-size(tablet-portrait) {
+    //   flex-direction: column;
+    //   align-items: flex-start;
+    // }
+
+    @include for-size(big-phone) {
+      padding: 20px;
+    }
+
     &__content {
+      @include for-size(tablet-portrait) {
+        width: 100%;
+      }
     }
 
     &__title {
       margin-bottom: 10px;
       font-size: 26px;
       font-weight: 600;
+
+      @include for-size(tablet-portrait) {
+        text-align: center;
+      }
+
+      @include for-size(big-phone) {
+        font-size: 20px;
+      }
     }
 
     &__info {
       display: flex;
       align-items: center;
+
+      @include for-size(desktop) {
+        align-items: flex-start;
+      }
     }
 
     &__details {
       margin-bottom: 0;
       font-size: 18px;
       color: $fonts;
+
+      @include for-size(big-phone) {
+        font-size: 16px;
+      }
     }
 
     &__text {
@@ -137,11 +189,29 @@ body {
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+
+      @include for-size(small-desktop) {
+        flex-direction: column;
+      }
+
+      @include for-size(tablet-portrait) {
+        flex-direction: row;
+        margin-top: 20px;
+        width: 100%;
+      }
     }
 
     &__button {
       &:not(:first-child) {
         margin-left: 20px;
+
+        @include for-size(small-desktop) {
+          margin: 10px 0 0;
+        }
+
+        @include for-size(tablet-portrait) {
+          margin: 0 0 0 10px;
+        }
       }
     }
   }

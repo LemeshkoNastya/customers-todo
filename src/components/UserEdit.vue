@@ -75,9 +75,17 @@ export default {
 .user-edit {
   margin-top: 30px;
 
+  @include for-size(phone) {
+    margin-top: 0;
+  }
+
   &__field {
     display: flex;
     align-items: flex-start;
+
+    @include for-size(phone) {
+      flex-direction: column;
+    }
   }
 
   &__label {
@@ -85,6 +93,10 @@ export default {
     width: 140px;
     font-size: 18px;
     color: black;
+
+    @include for-size(big-phone) {
+      font-size: 16px;
+    }
   }
 }
 </style>
