@@ -180,7 +180,7 @@ export default new Vuex.Store({
         icon: "mdi-pencil",
         titlePopup: "Редактирование пользователя",
         buttonPopupSave: true,
-        componentPopup: "TodoList",
+        componentPopup: "UserEdit",
       }
     ],
   },
@@ -188,6 +188,14 @@ export default new Vuex.Store({
     saveUserTodo(state, payload) {
       const indexUser = state.users.findIndex((user) => user.id === payload.id);
       if (indexUser > -1) state.users[indexUser].todo = payload.todo;
+    },
+    saveUserEdit(state, payload) {
+      const indexUser = state.users.findIndex((user) => user.id === payload.id);
+      if (indexUser > -1) {
+        state.users[indexUser].name = payload.name;
+        state.users[indexUser].mail = payload.mail;
+        state.users[indexUser].phone = payload.phone;
+      }
     },
   },
   getters: {
@@ -197,9 +205,9 @@ export default new Vuex.Store({
     usersButtons(state) {
       return state.usersButton;
     },
-    todoList: (state) => (id) => {
-      return state.users.find((user) => user.id === id).todo;
-    },
+    // todoList: (state) => (id) => {
+    //   return state.users.find((user) => user.id === id).todo;
+    // },
   },
   actions: {},
   modules: {}

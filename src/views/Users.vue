@@ -22,7 +22,7 @@
             :key="button.name"
             :text="button.name"
             :icon="button.icon"
-            @click.native="clickButton(button, user.id)"
+            @click.native="clickButton(button, user)"
             class="user__button"
           />
         </div>
@@ -31,7 +31,7 @@
     <BasePopup
       :popup="showPopup"
       :options="optionsPopup"
-      @close="showPopup = false"
+      @close="closePopup()"
       @save="optionsPopup.component === 'TodoList' ? saveTodo() : saveUser()"
     />
   </div>
@@ -52,30 +52,37 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["usersList", "usersButtons", "todoList"]),
+    ...mapGetters(["usersList", "usersButtons"]),
   },
   methods: {
-    ...mapMutations(["saveUserTodo"]),
-    clickButton(button, id) {
+    ...mapMutations(["saveUserTodo", "saveUserEdit"]),
+    clickButton(button, user) {
       this.optionsPopup = {
         title: button.titlePopup,
         buttonSave: button.buttonPopupSave,
         component: button.componentPopup,
-        data: {
-          id: id,
-          todo: JSON.parse(JSON.stringify(this.todoList(id))),
-        },
         width: 600,
       };
 
+      if (this.optionsPopup.component === "TodoList") {
+        this.optionsPopup.data = {
+          id: user.id,
+          todo: user.todo.slice(0),
+        };
+      } else this.optionsPopup.data = JSON.parse(JSON.stringify(user));
+
       this.showPopup = true;
+    },
+    closePopup() {
+      this.optionsPopup = {};
+      this.showPopup = false;
     },
     saveTodo() {
       this.saveUserTodo(this.optionsPopup.data);
       this.showPopup = false;
     },
     saveUser() {
-      console.log("saveUser");
+      this.saveUserEdit(this.optionsPopup.data);
       this.showPopup = false;
     },
   },

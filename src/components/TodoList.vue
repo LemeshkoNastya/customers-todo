@@ -25,7 +25,6 @@
 import BaseInput from "@/components/BaseInput.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import TodoListItem from "@/components/TodoListItem.vue";
-import { mapGetters } from "vuex";
 
 export default {
   props: ["data"],
@@ -40,9 +39,6 @@ export default {
           "Такая задача уже существует",
       },
     };
-  },
-  computed: {
-    ...mapGetters(["todoList"]),
   },
   methods: {
     addTodo() {

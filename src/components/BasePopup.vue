@@ -56,12 +56,6 @@ export default {
       this.openDialog = this.popup;
     },
   },
-  methods: {
-    clickButton(index) {
-      this.options.buttons[index].click = true;
-      if (!this.options.buttons[index].showDialog) this.openDialog = false;
-    },
-  },
 };
 </script>
 
