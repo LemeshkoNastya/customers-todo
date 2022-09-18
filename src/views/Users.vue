@@ -12,7 +12,7 @@
             </a>
             <span class="user__label">, телефон: </span>
             <a :href="`tel:${user.phone}`" class="user__link">
-              {{ user.phone }}
+              {{ user.phone | phoneFormat }}
             </a>
           </div>
         </div>
@@ -40,9 +40,11 @@
 <script>
 import BaseButton from "@/components/BaseButton.vue";
 import BasePopup from "@/components/BasePopup.vue";
+import phoneFormat from "@/helpers/phoneFormat";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  filters: { phoneFormat },
   components: { BaseButton, BasePopup },
   data() {
     return {
