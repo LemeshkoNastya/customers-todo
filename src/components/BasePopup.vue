@@ -18,7 +18,7 @@
       </v-card-title>
       <v-card-text>
         <keep-alive v-if="options.component">
-          <component :is="componentContent" :data.sync="options.data" />
+          <component :is="currentComponent" :data.sync="options.data" />
         </keep-alive>
       </v-card-text>
       <v-card-actions>
@@ -44,15 +44,15 @@ export default {
   data: () => {
     return {
       openDialog: false,
+      currentComponent: null,
     };
-  },
-  computed: {
-    componentContent() {
-      return () => import(`@/components/${this.options.component}.vue`);
-    },
   },
   watch: {
     popup() {
+      if (this.popup) {
+        this.currentComponent = () =>
+          import(`@/components/${this.options.component}.vue`);
+      }
       this.openDialog = this.popup;
     },
   },
