@@ -2,7 +2,7 @@
   <v-dialog
     v-model="openDialog"
     persistent
-    :width="options.width"
+    :width="options.width || 0"
     class="popup"
   >
     <v-card class="popup__content">
@@ -17,7 +17,7 @@
         />
       </v-card-title>
       <v-card-text>
-        <keep-alive v-if="options.component">
+        <keep-alive v-if="currentComponent">
           <component :is="currentComponent" :data.sync="options.data" />
         </keep-alive>
       </v-card-text>
@@ -52,7 +52,7 @@ export default {
       if (this.popup) {
         this.currentComponent = () =>
           import(`@/components/${this.options.component}.vue`);
-      }
+      } else this.currentComponent = null;
       this.openDialog = this.popup;
     },
   },
