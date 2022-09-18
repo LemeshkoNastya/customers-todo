@@ -1,16 +1,16 @@
 <template>
-  <div class="payments">
-    <h1 class="payments__title">Платежи</h1>
-    <div class="payments__list">
-      <div v-for="payment in payments" :key="payment.id" class="payment">
-        <div class="payment__info">
-          <p class="payment__text payment__sum">
+  <div class="page">
+    <h1 class="page__title">Платежи</h1>
+    <div class="page__content">
+      <div v-for="payment in payments" :key="payment.id" class="card payment">
+        <div class="card__info payment__info">
+          <p class="card__details payment__sum">
             <span>Сумма: </span>
-            <span class="payment__value">{{ payment.sum | sumFormat }}</span>
+            <span class="card__text">{{ payment.sum | sumFormat }}</span>
           </p>
-          <p class="payment__text">
+          <p class="card__details">
             <span>Дата: </span>
-            <span class="payment__value">{{ payment.date.split(" ")[0] }}</span>
+            <span class="card__text">{{ payment.date.split(" ")[0] }}</span>
           </p>
         </div>
         <BaseButton
@@ -74,59 +74,13 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/main.scss";
-
-.payments {
-  margin-top: 56px;
-  background: $background;
-  min-height: calc(100vh - 56px);
-  height: 100%;
-
-  &__title {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 36px;
-    color: $fonts;
+.payment {
+  &__info {
+    width: 100%;
   }
 
-  &__list {
-    margin: 50px auto;
-    width: 80%;
-  }
-
-  .payment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding: 20px 40px;
-    background: white;
-    border-radius: 10px;
-
-    &:not(:first-child) {
-      margin-top: 20px;
-    }
-
-    &__info {
-      display: flex;
-      width: 100%;
-    }
-
-    &__sum {
-      width: 50%;
-    }
-
-    &__text {
-      margin-bottom: 0;
-      font-size: 18px;
-      color: $fonts;
-    }
-
-    &__value {
-      margin-bottom: 0;
-      font-size: 18px;
-      font-weight: 500;
-    }
+  &__sum {
+    width: 50%;
   }
 }
 </style>
