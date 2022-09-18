@@ -183,6 +183,140 @@ export default new Vuex.Store({
         componentPopup: "UserEdit",
       }
     ],
+    payments: [{
+        id: 0,
+        idUser: 0,
+        sum: 900,
+        date: "03.09.2022 14:47",
+        recipient: "ООО 'Цитрусовый рай'",
+      },
+      {
+        id: 1,
+        idUser: 1,
+        sum: 3500,
+        date: "17.09.2022 17:20",
+        recipient: "ООО 'Деливери Фраг Инк.'",
+      },
+      {
+        id: 2,
+        idUser: 1,
+        sum: 15000,
+        date: "17.09.2022 20:00",
+        recipient: "Техник Центр Ко",
+      },
+      {
+        id: 3,
+        idUser: 2,
+        sum: 600,
+        date: "01.09.2022 12:47",
+        recipient: "Кенди Денди Фабрик",
+      },
+      {
+        id: 4,
+        idUser: 3,
+        sum: 2000,
+        date: "05.09.2022 15:13",
+        recipient: "Шелл Стейшон",
+      },
+      {
+        id: 5,
+        idUser: 3,
+        sum: 800,
+        date: "05.09.2022 16:54",
+        recipient: "ООО 'Гросери Стор'",
+      },
+      {
+        id: 6,
+        idUser: 3,
+        sum: 200,
+        date: "06.09.2022 10:04",
+        recipient: "Кофе Бин Компани",
+      },
+      {
+        id: 7,
+        idUser: 6,
+        sum: 6000,
+        date: "11.09.2022 21:45",
+        recipient: "Ресторан Марсельеза",
+      },
+      {
+        id: 8,
+        idUser: 7,
+        sum: 9000,
+        date: "14.08.2022 11:59",
+        recipient: "ООО 'Фёрниче Стор'",
+      },
+      {
+        id: 9,
+        idUser: 7,
+        sum: 100,
+        date: "27.08.2022 12:00",
+        recipient: "Пейпер Шоп",
+      },
+      {
+        id: 10,
+        idUser: 9,
+        sum: 20000,
+        date: "02.09.2022 19:34",
+        recipient: "Авиасейлз",
+      },
+      {
+        id: 11,
+        idUser: 5,
+        sum: 8000,
+        date: "31.08.2022 23:49",
+        recipient: "ООО 'Вуд Фактори'",
+      },
+      {
+        id: 12,
+        idUser: 4,
+        sum: 14000,
+        date: "31.07.2022 12:01",
+        recipient: "Кристал Пелас Москоу",
+      },
+      {
+        id: 13,
+        idUser: 4,
+        sum: 1900,
+        date: "01.08.2022 16:43",
+        recipient: "Транспортейшен Холдинг",
+      },
+      {
+        id: 14,
+        idUser: 8,
+        sum: 330,
+        date: "15.08.2022 20:00",
+        recipient: "Старбакс",
+      },
+      {
+        id: 15,
+        idUser: 8,
+        sum: 1200,
+        date: "16.08.2022 14:41",
+        recipient: "Убер такси",
+      },
+      {
+        id: 16,
+        idUser: 8,
+        sum: 8880,
+        date: "16.09.2022 17:18",
+        recipient: "ООО 'Форд Мануфактёр Сервис'",
+      },
+      {
+        id: 17,
+        idUser: 8,
+        sum: 11000,
+        date: "16.09.2022 15:43",
+        recipient: "ООО 'Форд Мануфактёр'",
+      },
+    ],
+    paymentsButton: {
+      name: "Детали",
+      icon: "mdi-information-outline",
+      titlePopup: "Детали платежа",
+      buttonPopupSave: false,
+      componentPopup: "PaymentDetail",
+    },
   },
   mutations: {
     saveUserTodo(state, payload) {
@@ -205,9 +339,16 @@ export default new Vuex.Store({
     usersButtons(state) {
       return state.usersButton;
     },
-    // todoList: (state) => (id) => {
-    //   return state.users.find((user) => user.id === id).todo;
-    // },
+    payments(state) {
+      return state.payments;
+    },
+    paymentsButton(state) {
+      return state.paymentsButton;
+    },
+    paymentSender: (state) => (id) => {
+      const user = state.users.find(user => user.id === id);
+      return user !== undefined ? user.name : null;
+    },
   },
   actions: {},
   modules: {}

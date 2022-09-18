@@ -1,19 +1,24 @@
 <template>
   <div class="users">
-    <h2 class="users__title">Пользователи</h2>
+    <h1 class="users__title">Пользователи</h1>
     <div class="users__list">
       <div v-for="user in usersList" :key="user.id" class="user">
         <div class="user__info">
           <h4 class="user__name">{{ user.name }}</h4>
-          <div>
-            <span class="user__label">Почта: </span>
-            <a :href="`mailto:${user.mail}`" class="user__link">
-              {{ user.mail }}
-            </a>
-            <span class="user__label">, телефон: </span>
-            <a :href="`tel:${user.phone}`" class="user__link">
-              {{ user.phone | phoneFormat }}
-            </a>
+          <div class="user__details">
+            <p class="user__text">
+              <span class="user__label">почта:</span>
+              <a :href="`mailto:${user.mail}`" class="user__link">
+                {{ user.mail }}
+              </a>
+            </p>
+            <p class="user__text">
+              <span class="user__label">, </span>
+              <span class="user__label">телефон:</span>
+              <a :href="`tel:${user.phone}`" class="user__link">
+                {{ user.phone | phoneFormat }}
+              </a>
+            </p>
           </div>
         </div>
         <div class="user__buttons">
@@ -48,7 +53,6 @@ export default {
   components: { BaseButton, BasePopup },
   data() {
     return {
-      currentText: null,
       showPopup: false,
       optionsPopup: {},
     };
@@ -139,16 +143,24 @@ export default {
     font-weight: 600;
   }
 
-  &__label {
-    font-size: 18px;
-    font-weight: 500;
+  &__details {
+    display: flex;
   }
+
+  & &__text {
+    margin-bottom: 0;
+    font-size: 18px;
+  }
+
+  // &__label {
+  //   // font-weight: 500;
+  // }
 
   & &__link {
     border-bottom: 2px solid white;
     color: $fonts;
-    font-size: 18px;
-    font-weight: 400;
+    // font-size: 18px;
+    font-weight: 500;
     text-decoration: none;
 
     &:hover {

@@ -1,7 +1,7 @@
 <template>
   <div class="user-edit">
-    <div v-for="info in currentUser" :key="info.label">
-      <span>{{ info.label }}</span>
+    <div v-for="info in currentUser" :key="info.label" class="user-edit__field">
+      <span class="user-edit__label">{{ info.label }}</span>
       <BaseInput
         :text.sync="info.value"
         :label="info.label"
@@ -69,4 +69,22 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "@/assets/styles/main.scss";
+
+.user-edit {
+  margin-top: 30px;
+
+  &__field {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__label {
+    margin-top: 8px;
+    width: 140px;
+    font-size: 18px;
+    color: black;
+  }
+}
+</style>
