@@ -1,0 +1,1 @@
+.user-edit{margin-top:30px}@media(max-width:480px){.user-edit{margin-top:0}}.user-edit__field{display:flex;align-items:flex-start}@media(max-width:480px){.user-edit__field{flex-direction:column}}.user-edit__label{margin-top:8px;width:140px;font-size:18px;color:#000}@media(max-width:540px){.user-edit__label{font-size:16px}}
