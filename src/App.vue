@@ -16,6 +16,26 @@ export default {};
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 @import "@/assets/styles/main.scss";
 
+body {
+  height: auto;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $cyan;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9fd;
+    border-left: 2px solid $cyan;
+  }
+}
+
 #app {
   font-family: "Montserrat", sans-serif;
 
